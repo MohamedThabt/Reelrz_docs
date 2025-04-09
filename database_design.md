@@ -13,7 +13,11 @@ DBMS: MYSQL
 - BRAND_OWNER_PROFILES
 - USER_BANS
 
-#### 2- 
+#### 2- Job offers and proposals  
+- JOB_OFFERS
+- PROPOSALS
+
+
 
 -----
 
@@ -121,6 +125,31 @@ erDiagram
         timestamp created_at
         timestamp updated_at
         }
+    JOB_OFFERS {
+        bigint id PK
+        bigint user_id FK 
+        string title
+        text description
+        decimal budget
+        string link 
+        json required_skills
+        datetime deadline
+        enum status "open, in_progress, completed, cancelled"
+        timestamp created_at
+        timestamp updated_at
+    }
+     PROPOSALS {
+        bigint id PK
+        bigint job_offer_id FK
+        bigint user_id FK 
+        text cover_letter
+        decimal proposed_price
+        datetime estimated_delivery
+        string attachments
+        enum status "pending, accepted, rejected"
+        timestamp created_at
+        timestamp updated_at
+    }
 
     USERS ||--o{ IDENTITY_AUTHENTICATIONS : has
     USERS ||--o| FREELANCER_PROFILES : has
@@ -130,4 +159,7 @@ erDiagram
     USERS ||--o| BRAND_OWNER_PROFILES : has
     ADMINS ||--o{ USER_BANS : issued_by
     USERS ||--o{ USER_BANS : has
+    USERS ||--o{ JOB_OFFERS : creates
+    JOB_OFFERS ||--o{ PROPOSALS : receives
+    USERS ||--o{ PROPOSALS : submits
 ```
