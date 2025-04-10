@@ -33,6 +33,8 @@ DBMS: MYSQL
 - MESSAGES
 - MESSAGE_ATTACHMENTS
 
+#### notification 
+
 -----
 
 
@@ -255,6 +257,17 @@ erDiagram
         timestamp created_at
         timestamp updated_at
     }
+    NOTIFICATIONS {
+        bigint id PK
+        bigint user_id FK "References USERS.id"
+        string type "e.g., new_message, job_accepted"
+        bigint notifiable_id "Nullable"
+        string notifiable_type "Nullable, e.g., Messages, JobOffers"
+        json data "Nullable, additional details"
+        timestamp read_at "Nullable"
+        timestamp created_at
+        timestamp updated_at
+    }
 
 
 
@@ -281,4 +294,11 @@ erDiagram
     CONVERSATIONS ||--o{ MESSAGES : contains
     USERS ||--o{ MESSAGES : sends
     MESSAGES ||--o{ MESSAGE_ATTACHMENTS : has
+    USERS ||--o{ NOTIFICATIONS : receives
+    NOTIFICATIONS ||--o| MESSAGES : relates_to
+    NOTIFICATIONS ||--o| JOB_OFFERS : relates_to
+    NOTIFICATIONS ||--o| PROPOSALS : relates_to
+    NOTIFICATIONS ||--o| PLATFORM_TRANSACTIONS : relates_to
+    NOTIFICATIONS ||--o| RATINGS : relates_to
+    
 ```
