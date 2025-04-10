@@ -1,47 +1,4 @@
 ## Database Design
-DBMS: MYSQL
-- and will use central server and scale vertical when number of users increased (100000)
-### Modules :
-#### 1- users and profiles 
-- USERS
-- IDENTITY_AUTHENTICATIONS 
-- ADMINS
-- FREELANCER_PROFILES
-- SKILLS
-- FREELANCER_SKILLS
-- PROJECTS
-- BRAND_OWNER_PROFILES
-- USER_BANS
-
-#### 2- Job offers and proposals  
-- JOB_OFFERS
-- PROPOSALS
-
-#### 3- Payments and Balance 
-- PENDING_BALANCES (to hold job escrow)
-- USER_BALANCES
-- PLATFORM_TRANSACTIONS (for show all transactions)
-- PAYMENT_GATEWAY_LOGS (to tracking all gateway transactions)
-- WITHDRAWALS to tracking withdrawals and approve or denied  it 
-- (create indexing)
-####  4- Ratting and Reviews
-- RATINGS
-- REVIEWS
-
-#### 5- Chatting system 
-- CONVERSATIONS
-- MESSAGES
-- MESSAGE_ATTACHMENTS
-
-#### 6- Notification 
-- NOTIFICATIONS
-#### 7- Reporting system 
-- REPORTS
-#### 8 supporting and ticket system 
-- SUPPORT_TICKETS
-
------
-
 
 
 ```mermaid
@@ -351,3 +308,47 @@ erDiagram
     ADMINS ||--o{ TICKET_REPLIES : replies
 
 ```
+
+
+DBMS: MYSQL
+- and will use central server and scale vertical when number of users increased (100000)
+### Modules :
+#### 1- users and profiles 
+- USERS
+- IDENTITY_AUTHENTICATIONS 
+- ADMINS
+- FREELANCER_PROFILES
+- SKILLS
+- FREELANCER_SKILLS
+- PROJECTS
+- BRAND_OWNER_PROFILES
+- USER_BANS
+
+#### 2- Job offers and proposals  
+- JOB_OFFERS
+- PROPOSALS
+
+#### 3- Payments and Balance 
+- PENDING_BALANCES (to hold job escrow)
+- USER_BALANCES
+- PLATFORM_TRANSACTIONS (for show all transactions)
+- PAYMENT_GATEWAY_LOGS (to tracking all gateway transactions)
+- WITHDRAWALS to tracking withdrawals and approve or denied  it 
+- (create indexing)
+####  4- Ratting and Reviews
+- RATINGS
+- REVIEWS
+
+#### 5- Chatting system 
+- CONVERSATIONS
+- MESSAGES
+- MESSAGE_ATTACHMENTS
+
+#### 6- Notification 
+- NOTIFICATIONS
+#### 7- Reporting system 
+- REPORTS
+#### 8 supporting and ticket system 
+- SUPPORT_TICKETS
+
+-----
