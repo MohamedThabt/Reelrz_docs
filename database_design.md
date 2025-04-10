@@ -268,6 +268,19 @@ erDiagram
         timestamp created_at
         timestamp updated_at
     }
+REPORTS {
+        bigint id PK
+        bigint reporter_id FK "References USERS.id"
+        bigint reported_id "Entity being reported"
+        string reported_type "e.g., User, JobOffer, Message"
+        enum reason "spam, scam, inappropriate, other"
+        text description "Nullable"
+        enum status "pending, reviewed, resolved, dismissed"
+        bigint admin_id FK "References ADMINS.id, Nullable"
+        text resolution_note "Nullable"
+        timestamp created_at
+        timestamp updated_at
+    }
 
 
 
@@ -300,5 +313,11 @@ erDiagram
     NOTIFICATIONS ||--o| PROPOSALS : relates_to
     NOTIFICATIONS ||--o| PLATFORM_TRANSACTIONS : relates_to
     NOTIFICATIONS ||--o| RATINGS : relates_to
-    
+    USERS ||--o{ REPORTS : submits
+    ADMINS ||--o{ REPORTS : handles
+    REPORTS ||--o| JOB_OFFERS : targets
+    REPORTS ||--o| USERS : targets
+    REPORTS ||--o| MESSAGES : targets
+    REPORTS ||--o| PROPOSALS : targets
+
 ```
