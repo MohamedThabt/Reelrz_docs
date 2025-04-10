@@ -24,6 +24,12 @@ DBMS: MYSQL
 - PAYMENT_GATEWAY_LOGS (to tracking all gateway transactions)
 - WITHDRAWALS to tracking withdrawals and approve or denied  it 
 - (create indexing)
+####  4- Ratting and Reviews
+- RATINGS
+- REVIEWS
+
+#### 5- Chatting system 
+
 -----
 
 
@@ -196,6 +202,31 @@ erDiagram
         timestamp created_at
         timestamp updated_at
     }
+    RATINGS {
+        bigint id PK
+        bigint job_offer_id FK "References JOB_OFFERS.id"
+        bigint rater_id FK "References USERS.id (rater)"
+        bigint ratee_id FK "References USERS.id (ratee)"
+        int recommend_to_others "1-5 rating"
+        int professionalism_in_dealing "1-5 rating"
+        int speed_of_communication "1-5 rating"
+        int quality_of_work "1-5 rating"
+        int expertise_in_field "1-5 rating"
+        int respect_for_deadline "1-5 rating"
+        int willingness_to_work_again "1-5 rating"
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    REVIEWS {
+        bigint id PK
+        bigint rating_id FK "References RATINGS.id"
+        text review_text
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+
 
 
     USERS ||--o{ IDENTITY_AUTHENTICATIONS : has
@@ -214,3 +245,8 @@ erDiagram
     JOB_OFFERS ||--o{ PENDING_BALANCES : holds
     PLATFORM_TRANSACTIONS ||--o{ PAYMENT_GATEWAY_LOGS : logged_via
     USERS ||--o{ WITHDRAWALS : requests
+    JOB_OFFERS ||--o{ RATINGS : rated_for
+    USERS ||--o{ RATINGS : gives
+    USERS ||--o{ RATINGS : receives
+    RATINGS ||--o| REVIEWS : has
+```
