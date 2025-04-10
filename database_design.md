@@ -33,7 +33,12 @@ DBMS: MYSQL
 - MESSAGES
 - MESSAGE_ATTACHMENTS
 
-#### notification 
+#### 6- Notification 
+- NOTIFICATIONS
+#### 7- Reporting system 
+- REPORTS
+#### 8 supporting and ticket system 
+- SUPPORT_TICKETS
 
 -----
 
@@ -268,7 +273,7 @@ erDiagram
         timestamp created_at
         timestamp updated_at
     }
-REPORTS {
+    REPORTS {
         bigint id PK
         bigint reporter_id FK "References USERS.id"
         bigint reported_id "Entity being reported"
@@ -281,7 +286,27 @@ REPORTS {
         timestamp created_at
         timestamp updated_at
     }
+    SUPPORT_TICKETS {
+        bigint id PK
+        bigint user_id FK "References USERS.id"
+        string subject
+        text description
+        enum status "open, in_progress, resolved, closed"
+        enum priority "low, medium, high, urgent"
+        bigint assigned_admin_id FK "References ADMINS.id, Nullable"
+        timestamp created_at
+        timestamp updated_at
+    }
 
+    TICKET_REPLIES {
+        bigint id PK
+        bigint ticket_id FK "References SUPPORT_TICKETS.id"
+        bigint user_id FK "References USERS.id, Nullable"
+        bigint admin_id FK "References ADMINS.id, Nullable"
+        text message
+        timestamp created_at
+        timestamp updated_at
+    }
 
 
     USERS ||--o{ IDENTITY_AUTHENTICATIONS : has
@@ -319,5 +344,10 @@ REPORTS {
     REPORTS ||--o| USERS : targets
     REPORTS ||--o| MESSAGES : targets
     REPORTS ||--o| PROPOSALS : targets
+    USERS ||--o{ SUPPORT_TICKETS : submits
+    ADMINS ||--o{ SUPPORT_TICKETS : handles
+    SUPPORT_TICKETS ||--o{ TICKET_REPLIES : contains
+    USERS ||--o{ TICKET_REPLIES : replies
+    ADMINS ||--o{ TICKET_REPLIES : replies
 
 ```
