@@ -17,15 +17,19 @@ DBMS: MYSQL
 - JOB_OFFERS
 - PROPOSALS
 
-
-
+#### 3- Payments and Balance 
+- PENDING_BALANCES (to hold job escrow)
+- USER_BALANCES
+- PLATFORM_TRANSACTIONS (for show all transactions)
+- PAYMENT_GATEWAY_LOGS (to tracking all gateway transactions)
+- WITHDRAWALS to tracking withdrawals and approve or denied  it 
+- (create indexing)
 -----
 
 
 
 ```mermaid
 erDiagram
- 
     USERS {
         bigint id PK
         string first_name
@@ -63,7 +67,6 @@ erDiagram
         timestamp created_at
         timestamp updated_at
     }
-    
     FREELANCER_PROFILES {
         bigint id PK
         bigint user_id FK
@@ -73,7 +76,6 @@ erDiagram
         timestamp created_at
         timestamp updated_at
     }
-    
     SKILLS {
         bigint id PK
         string name
@@ -81,7 +83,6 @@ erDiagram
         timestamp created_at
         timestamp updated_at
     }
-    
     FREELANCER_SKILLS {
         bigint freelancer_profile_id FK
         bigint skill_id FK
@@ -89,7 +90,6 @@ erDiagram
         timestamp created_at
         timestamp updated_at
     }
-
     PROJECTS {
         bigint id PK
         bigint freelancer_profile_id FK
@@ -103,7 +103,6 @@ erDiagram
         timestamp created_at
         timestamp updated_at
     }
-
     BRAND_OWNER_PROFILES {
         bigint id PK
         bigint user_id FK
@@ -113,8 +112,7 @@ erDiagram
         text description "Nullable"
         timestamp created_at
         timestamp updated_at
-        }
-
+    }
     USER_BANS {
         bigint id PK
         bigint user_id FK
@@ -124,7 +122,7 @@ erDiagram
         int times_banned
         timestamp created_at
         timestamp updated_at
-        }
+    }
     JOB_OFFERS {
         bigint id PK
         bigint user_id FK 
@@ -138,7 +136,7 @@ erDiagram
         timestamp created_at
         timestamp updated_at
     }
-     PROPOSALS {
+    PROPOSALS {
         bigint id PK
         bigint job_offer_id FK
         bigint user_id FK 
@@ -150,6 +148,55 @@ erDiagram
         timestamp created_at
         timestamp updated_at
     }
+    PLATFORM_TRANSACTIONS {
+        bigint id PK
+        bigint user_id FK "References USERS.id, Nullable for platform"
+        decimal amount
+        enum type "deposit, escrow_hold, release, commission, withdraw, refund"
+        enum payment_method "bank_card, mobile_wallet, balance"
+        string gateway_transaction_id "Nullable"
+        enum status "pending, completed, failed"
+        timestamp created_at
+        timestamp updated_at
+    }
+    USER_BALANCES {
+        bigint id PK
+        bigint user_id FK "References USERS.id"
+        decimal balance "Default 0.00, Available funds"
+        timestamp created_at
+        timestamp updated_at
+    }
+    PENDING_BALANCES {
+        bigint id PK
+        bigint job_offer_id FK "References JOB_OFFERS.id"
+        bigint freelancer_id FK "References USERS.id"
+        decimal amount "Funds held for freelancer"
+        enum status "pending, released"
+        decimal commission "Platform's 20% cut"
+        timestamp created_at
+        timestamp updated_at
+    }
+    PAYMENT_GATEWAY_LOGS {
+        bigint id PK
+        bigint transaction_id FK
+        string gateway_transaction_id "Nullable"
+        json request_data "Nullable"
+        json response_data "Nullable"
+        enum status "success, failure"
+        timestamp created_at
+        timestamp updated_at
+    }
+    WITHDRAWALS {
+        bigint id PK
+        bigint user_id FK
+        decimal amount
+        enum status "pending, approved, failed"
+        enum destination_type "bank, mobile_wallet"
+        string destination_details
+        timestamp created_at
+        timestamp updated_at
+    }
+
 
     USERS ||--o{ IDENTITY_AUTHENTICATIONS : has
     USERS ||--o| FREELANCER_PROFILES : has
@@ -162,4 +209,8 @@ erDiagram
     USERS ||--o{ JOB_OFFERS : creates
     JOB_OFFERS ||--o{ PROPOSALS : receives
     USERS ||--o{ PROPOSALS : submits
-```
+    USERS ||--o{ PLATFORM_TRANSACTIONS : performs
+    USERS ||--o| USER_BALANCES : has
+    JOB_OFFERS ||--o{ PENDING_BALANCES : holds
+    PLATFORM_TRANSACTIONS ||--o{ PAYMENT_GATEWAY_LOGS : logged_via
+    USERS ||--o{ WITHDRAWALS : requests

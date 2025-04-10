@@ -100,6 +100,17 @@ Applicable on Creator/Influencer and Brand Projects Pages.
 - **Brand Owner Requirements**
   - Brand owners must charge their balance before hiring a creator.
   - **Platform Commission**: 20% of the total project value.
+----
+### 🔐 Summary of Transaction Types
+
+| Type | Description |
+|------|-------------|
+| Deposit | Client deposits funds via Paymob |
+| Escrow Hold | Funds held for in-progress job |
+| Release | Funds released to freelancer |
+| Commission | Platform's 20% cut taken from project value |
+| Withdraw | Freelancer withdraws earnings to bank/wallet |
+| Refund | (Optional) Funds returned to client if project cancelled |
 
 ---
 
@@ -147,6 +158,39 @@ Applicable on Creator/Influencer and Brand Projects Pages.
 - **Safety & Dispute Resolution**
   - Escrow system ensures secure payments.
   - Dispute resolution team available for conflicts.
+### CONTRACT
+
+CONTRACT FOR FREELANCE SERVICES
+
+This Contract is entered into on [DATE] by and between:
+
+- **Freelancer**: [Freelancer Name]
+- **Client**: [Client Name]
+
+PROJECT DETAILS:
+- Project Title: [Project Title]
+- Scope of Work: [Scope of Work as per Proposal]
+- Payment Terms: [Fixed Price/Hourly Rate]
+- Milestones: [List of Milestones with Payment Triggers]
+
+PAYMENT TERMS:
+- Total Budget: [Total Budget]
+- Payment Schedule: [Payment Schedule based on Milestones]
+
+TERMINATION:
+- This contract may be terminated by either party with [Number] days written notice.
+
+DISPUTE RESOLUTION:
+- Any disputes arising from this contract will be resolved through [Mediation Process].
+
+By signing below, both parties acknowledge that they have read, understand, and agree to the terms and conditions outlined in this contract.
+
+---
+
+Freelancer Signature: _____________________________
+Client Signature: _____________________________
+Date: _______________________________________
+
 
 ---
 

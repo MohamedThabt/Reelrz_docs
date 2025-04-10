@@ -1,0 +1,182 @@
+
+
+
+i will create mobile app to be my personal fitness coach 
+this is the features 
+- diet plane based on inbody 
+- workout plane (weekly)
+- colsantaion and follow up daily and weekly 
+- notification system (reminder for meals and work out )
+- encouragement system 
+- calories and macros calculator system based on image detiction (ai)
+technologies stacks :
+- Laravel for back end and mvc (dashboard for admin control on app )
+- flutter for mobile app 
+- GPT to make diet plane 
+- ai model for image detection to calculate calories (tell me how do it , where host this mode and what technologies i need to implement it )
+- this app will be as saas 
+
+then 
+- give architecture for this app (system design ) 
+- divide this system to modules 
+	as - authentication modules 
+	   - notification 
+	   - calories and macros calculato
+	   - ...
+
+
+
+
+
+
+
+then i want you create mermaid code to draw ERD digrame for this database tables
+and check this logic  
+* users 
+   * id 
+  - name 
+   * email 
+   * time stamp
+- conversation 
+   - id 
+  - label 
+  - user id forignkey null on delete 
+  - last message 
+- participance 
+	- conversation id 
+	- user id
+	- user role (Enum (member , admin ))
+	- joined at 
+- message 
+	- id
+	- converstion id  
+	- user id 
+	- type 
+	- body 
+- recipients 
+	- user id cascade on delete 
+	- message id 	cascade on delete 
+	- read date (time stamp )
+
+erDiagram
+    USERS {
+        int id PK
+        string name
+        string email
+        string password_hash
+        string avatar_url
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    CONVERSATIONS {
+        int id PK
+        string title
+        string description
+        enum type "direct/group"
+        int created_by FK "Non-null creator"
+        int last_message_id FK "Reference to messages.id"
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    PARTICIPANTS {
+        int id PK
+        int conversation_id FK
+        int user_id FK
+        enum role "member/admin/owner"
+        boolean is_muted
+        timestamp joined_at
+    }
+    
+    MESSAGES {
+        int id PK
+        int conversation_id FK
+        int user_id FK
+        enum type "text/image/file"
+        text content
+        string media_url "For images/files"
+        boolean is_edited
+        boolean is_deleted
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    RECIPIENTS {
+        int id PK
+        int message_id FK
+        int user_id FK
+        boolean is_delivered
+        boolean is_read
+        timestamp delivered_at
+        timestamp read_at
+    }
+    
+
+    
+
+
+
+    USERS ||--o{ CONVERSATIONS : "created_by"
+    CONVERSATIONS ||--o{ PARTICIPANTS : "has"
+    USERS ||--o{ PARTICIPANTS : "is"
+    CONVERSATIONS ||--o{ MESSAGES : "contains"
+    USERS ||--o{ MESSAGES : "authored"
+    MESSAGES ||--o{ RECIPIENTS : "delivered_to"
+    USERS ||--o{ RECIPIENTS : "received"
+
+
+
+based on this controller create documentation in markdown form that has
+
+all api end point with https methods
+all responses for success and exceptions
+and examplse for ever responses
+every response has :
+	- status
+	- code 
+	- message 
+	 - data
+
+
+
+Mohamed@@@123
+---------------------------------
+prompt for Reelz: 
+this is the system as a freelancer platform (to link Brand owner and creator /influencers who have the same attributes )
+and (admin and moderator has the same attributes) developed by Laravel 
+- i want to know what type of user i should consider in this system
+- what the best aproache for this system in data base and auth
+- and will use lravel socialite to auth for Brand owner and creator /influencers
+
+and in mermaid language give database design for that 
+
+
+
+this is user(brand owner and freelancer ) attributes
+  - First Name
+  - Last Name
+  - Email
+  - Phone Number
+  - Country
+  - Region
+  - Gender
+  - Account Image
+  - Account Type:
+    - freelancer (Creator / Influencer)
+    - Brand Owner  
+  - birthday 
+and tell me how to fill last fields with Laravel socialite or second step of account register
+and i will create table for Identity Authentication has 
+  - Front Side
+  - Back Side
+  - Selfie with Front ID
+  - status (pending , denied , accepted)
+give me database design in mermaid style and Laravel logic 
+edit mermaid digrame to :
+add attribute - verified (true ,false )to user table 
+and turn - Account Type: to role (brand owner or freelancer)
+and make Account Type is Enum (brand owner,creator ,influencers)
+-----------------
+then i want to create payment system and balance(for user) system for this platform 
+consider payment gateway (paymob) and pay methods (bank card and mobile wallets )
