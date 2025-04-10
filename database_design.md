@@ -29,6 +29,9 @@ DBMS: MYSQL
 - REVIEWS
 
 #### 5- Chatting system 
+- CONVERSATIONS
+- MESSAGES
+- MESSAGE_ATTACHMENTS
 
 -----
 
@@ -225,7 +228,33 @@ erDiagram
         timestamp created_at
         timestamp updated_at
     }
-    
+    CONVERSATIONS {
+        bigint id PK
+        bigint job_offer_id FK "References JOB_OFFERS.id, Nullable"
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    MESSAGES {
+        bigint id PK
+        bigint conversation_id FK "References CONVERSATIONS.id"
+        bigint sender_id FK "References USERS.id"
+        text message_text "Nullable"
+        boolean is_read "Default: false"
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    MESSAGE_ATTACHMENTS {
+        bigint id PK
+        bigint message_id FK "References MESSAGES.id"
+        enum media_type "image, video"
+        string media_url
+        bigint file_size "Nullable"
+        int duration "Nullable, for videos"
+        timestamp created_at
+        timestamp updated_at
+    }
 
 
 
@@ -249,4 +278,7 @@ erDiagram
     USERS ||--o{ RATINGS : gives
     USERS ||--o{ RATINGS : receives
     RATINGS ||--o| REVIEWS : has
+    CONVERSATIONS ||--o{ MESSAGES : contains
+    USERS ||--o{ MESSAGES : sends
+    MESSAGES ||--o{ MESSAGE_ATTACHMENTS : has
 ```
