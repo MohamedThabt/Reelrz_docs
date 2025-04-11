@@ -69,10 +69,9 @@ erDiagram
         string title
         text description
         string thumbnail
-        string image
         json skills
         string category
-        string link
+        string video_link
         timestamp created_at
         timestamp updated_at
     }
@@ -143,7 +142,7 @@ erDiagram
         bigint id PK
         bigint job_offer_id FK "References JOB_OFFERS.id"
         bigint freelancer_id FK "References USERS.id"
-        decimal amount "Funds held for freelancer"
+        decimal amount "Funds held for freelancer- amount taken from the proposal" 
         enum status "pending, released"
         decimal commission "Platform's 20% cut"
         timestamp created_at
