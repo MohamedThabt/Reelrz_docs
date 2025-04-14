@@ -1,137 +1,162 @@
-# Reelrz Pages
+# 🎬 Reelrz Platform Structure
 
-## General Pages (Accessible to All Users)
+---
 
-### Homepage
-- Purpose: Introduces the platform, highlights its value, and may feature popular job offers, top freelancers, or a call-to-action for registration/login.
-- Key Elements: Sign-up/login buttons, brief platform overview, and possibly a search bar.
-### Registration Page: Purpose: Allows new users to sign up as either a freelancer or brand owner.
-- Manual : First name, last name, email, phone number, country, region, gender, birthday, account image (optional)
-after that  Email/phone verification step.
-- social login options (google and facebook)
-after social login will redirect to complete account page  
-### Terms of Service, Privacy Policy, About Us:
-- Purpose: Static pages for legal and informational content.
+## 🔐 1. Login & General Access
 
------
-## Freelancer-Specific Pages
+### **Homepage**
+- **Purpose:** Intro to platform; value proposition.
+- **Key Elements:**
+  - Sign-up/Login buttons
+  - Platform overview
+    - how our site work 
+    - why Reelrz
+    - areas of specialization
+    - common questions 
 
-### Freelancer Dashboard:
-- Purpose: Central hub post-login.
-- Features: 
-    - all jobs with filter(recommended, ongoing, cancelled, and completed jobs)
-    - earnings summary
-    - quick links to profile
-    - messages (all chats)
-    - notifications.
-    - all projects (portfolio)
-    - Balance and Transaction History Page
-    - freelancer  information
-        - personal info 
-        - Bio
-        - specialization
-        - job title
-        - skills
-    - add new project to portfolio (can use same structure to project edit page)
-        - title
-        - description
-        - thumbnail (image upload)
-        - skills
-        - category
-        - video link from PROJECTS
-        - identity authentications 
-            - submitting 
-            - verified
+### **Registration/login page  Page**
+- **Manual register :** First name, last name, email
+- **Verification:** Email or phone step
+- `or`
+- **Social Login:** Google / Facebook 
+---
+- **manual login ** email and password 
+- **reset password**
+- `or`
+- **Social Login:** Google / Facebook 
 
-### Freelancer Profile View Page:
- Publicly viewable profile showcasing their:
-    - details (about freelancer)
-    - skills
-    - portfolio(projects)
-    - rating and reviews
+### **Legal & Info Pages**
+- Terms of Service  
+- Privacy Policy  
+- About Us  
 
-### Job Offer Listing Page:
-- Purpose: Browse and search available job offers.
-- Features:
-    - Filters (e.g., category, budget, deadline),
-    - search bar
-    - job cards with 
-        - thumbnail
-        - title
-        - description
-        - budget 
-        - required skills.
-        - report button for report this job offer (it will be modal)
+---
 
-### Job Offer Details Page:
-- Purpose: View full details of a job offer and submit a proposal.
-- Content:
-    - Title
-    - description
-    - budget
-    - required 
-    - skills
-    - deadline
-    - brand owner details
-    - "Submit Proposal" button.
-    - list of all submitted proposals with its details
-        - name of freelancer 
-        - part of cover latter
-        - report button for report this proposal (it will be modal)
-### Proposal Submission Page:
-- Purpose: Submit a proposal for a job offer.
-- content:
-    - Cover letter
-    - proposed price
-    - estimated delivery
-    - attachments
+## 👨‍💻 2. Freelancer View
 
-  **Note:** This can be implemented as a modal dialog overlay instead of a separate page to provide a seamless user experience without requiring navigation away from the job offer details.
+### **Freelancer Dashboard**
+Central hub after login. Includes:
 
------
-## Brand Owner-Specific Pages
+- 🔍 **Job Feed Page**  
+  - Filters: recommended, ongoing, cancelled, completed  
+  - Search bar  
+- 👤 **Freelancer Info Page**  
+  - Personal info  
+  - Bio  
+  - Specialization  
+  - Job Title  
+  - Skills  
+with button `Edit`
+- 🧾 **Balance & Transactions Page**
+- 🖼️ **Portfolio Management**  
+  - list all projects with button `Add project `
+  - Project page:  
+    - Title  
+    - Description  
+    - Thumbnail  
+    - Skills  
+    - Category  
+    - Video link  
+    with button `Edit`
+- 🔐 **Identity Verification Page**  
+    - 3 fields to upload 3 images for identity
+    - Status: Submitting / Verified /rejected
+- 📨 **Messages Page** (All job-related chats)
+- 🔔 **Notifications** it will be a widow has notifications  
 
-### Brand Owner Dashboard:
-- Purpose: Central hub post-login.
-- content: 
-    - Posted job offers
-        with status (, in_progress, completed, cancelled)
-    - received proposals
-    - ongoing jobs
-    - messages (all chats)
-    - notifications.
-    - Balance and Transaction History Page 
-    - Brand Owner  information
-        - personal info 
-    - identity authentications 
-        - submitting 
-        - verified
-### Brand Owner Profile View Page:
-Purpose: Publicly viewable profile showcasing their company details and its last projects 
+---
 
-### Job Offer Creation Page:
-Post a new job offer with :
-    - Title
-    - description
-    - budget
-    - link
-    - required
-    - skills
-    - deadline
-## Shared Pages (Freelancers and Brand Owners)
-### Chatting page 
-that show all job offers chats for freelancer and brand owner with their job offer 
+### **Freelancer Profile (Public View)**
+- About Section  
+- Skills  
+- Portfolio (Projects)  
+- Rating & Reviews  
 
+---
 
-### Rating and Review Submission Page 
-it will be modal 
-- Ratings (1-5) for
-    -  recommend_to_others
-    -  professionalism
-    -  communication
-    -  quality
-    -  expertise
-    -  deadline respect
-    - willingness to work again
-- review text
+### **Job Offers**
 
+- 📋 **Job Listing Page**  
+  - Filters: category, budget, deadline  
+  - Search bar  
+  - Job Cards: title, thumbnail, budget, required skills  
+  - Report Job button (modal)  
+
+- 📄 **Job Offer Details Page**  
+  - Title  
+  - Description  
+  - Budget  
+  - Required Skills  
+  - Deadline  
+  - Brand Owner Info  
+  - "Submit Proposal" button  
+  - Submitted Proposals List  
+    - Freelancer name  
+    - Part of cover letter  
+    - Report Proposal button (modal)
+
+- 📨 **Proposal Submission Modal**  
+  - Cover Letter  
+  - Proposed Price  
+  - Estimated Delivery  
+  - Attachments  
+
+---
+
+## 🧑‍💼 3. Brand Owner View
+
+### **Brand Owner Dashboard**
+Post-login main hub. Includes:
+
+- 📢 **Job Offer Management Page**  
+  - Posted Jobs (status: in_progress, completed, cancelled)  
+- 📬 **Proposals Received Page**
+- 🛠️ **Ongoing Jobs Page**
+- 👤 **Brand Owner Info Page** 
+  - Personal Info  with button `Edit`
+- 🔐 **Identity Verification Page**  
+ - 3 fields to upload 3 images for identity
+    - Status: Submitting / Verified /rejected
+- 🧾 **Balance & Transactions Page**
+- 📨 **Messages Page** (All chats)
+- 🔔 **Notifications** it will be a widow has notifications  
+---
+
+### **Brand Owner Profile (Public View)**
+- Company Info  
+- Previous Projects  
+
+---
+
+### **Job Offer Creation Page**
+- Title  
+- Description  
+- Budget  
+- Link (if applicable)  
+- Required Skills  
+- Deadline  
+
+---
+
+## 🤝 Shared Pages (Both User Roles)
+
+### **Chatting Page**
+- All job-related chats grouped by job offer
+
+### **Rating & Review Submission Modal**
+- Ratings (1–5):
+  - Recommend to others  
+  - Professionalism  
+  - Communication  
+  - Quality  
+  - Expertise  
+  - Deadline Respect  
+### **Report and Customer Support Modal**
+
+    - **Report Issue Form:**
+        - Dropdown to select issue type (e.g., Bug, Payment Issue, Inappropriate Content, Other).
+        - Text area for detailed description of the issue.
+        - Submit button.
+### **Notes**
+1- chatting page as upwork 
+2- layout structure  will be as Nafezly
