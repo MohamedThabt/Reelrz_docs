@@ -15,6 +15,7 @@ erDiagram
         string account_image
         enum account_type "brand_owner, freelancer"
         date birthday
+        string password "Nullable"
         boolean verified "true, false"
         string provider "Nullable"
         string provider_id "Nullable"
