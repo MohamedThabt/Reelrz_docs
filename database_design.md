@@ -8,6 +8,7 @@ erDiagram
         string first_name
         string last_name
         string email UK
+        timestamp email_verified_at "Nullable"
         string phone_number
         string country
         string region
