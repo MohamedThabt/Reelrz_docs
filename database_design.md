@@ -9,13 +9,13 @@ erDiagram
         string last_name
         string email UK
         timestamp email_verified_at "Nullable"
-        string phone_number
-        string country
-        string region
-        string gender
-        string account_image
+        string phone_number "Nullable"
+        string country "Nullable"
+        string region "Nullable"
+        string gender "Nullable"
+        string account_image "Nullable"
         enum account_type "brand_owner, freelancer"
-        date birthday
+        date birthday "Nullable"
         string password "Nullable"
         boolean verified "true, false"
         string provider "Nullable"
